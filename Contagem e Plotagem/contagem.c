@@ -131,8 +131,8 @@ int main() {
 
     FILE* file = fopen("contagem.csv", "w");
     fprintf(file, ",N,AVL,AD\n");
-
-    // insere 1000 números aleatórios na árvore AVL
+    
+    // insere 1000 números aleatórios nas duas árvores
     for (int i = 0; i < 1000; i++) {
         int value = rand() % 10000;
 
