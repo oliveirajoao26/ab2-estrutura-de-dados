@@ -2,11 +2,14 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <CUnit/CUnit.h> // Include the CUnit header file
-#include <CUnit/Basic.h> // Include the basic CUnit header file
+#include "CUnit/CUnit.h" // Include the CUnit header file
+#include "CUnit/Basic.h" // Include the basic CUnit header file
 
 // Include the header file with the ADTs
 #include "Estruturas.h"
+
+int init_suite(void) {return 0;}
+int clean_suite(void) {return 0;}
 
 void test_criar_no() {
     // Test creating a new node with item and frequency
