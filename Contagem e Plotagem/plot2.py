@@ -12,5 +12,6 @@ ax[0].set_title("Custo da AVL")
 ax[1].plot(df.index, df['AD'], color = 'red')
 ax[1].set_title("Custo da AD")
 
+plt.tight_layout()
 
 plt.show()
