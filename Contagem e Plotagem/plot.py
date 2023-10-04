@@ -13,7 +13,7 @@ ax.scatter(df.index,df['AD'],color="red")
 
 ax2.scatter(df.index, df['AVL'], color="blue")
 
-ax2.set_xlabel("Números inseridos", color="black")
+ax2.set_xlabel("Quantidade de Números inseridos", color="black")
 ax2.set_ylabel("Custo AVL", color="C0")
 ax2.set_ylim(0, 25)
 
