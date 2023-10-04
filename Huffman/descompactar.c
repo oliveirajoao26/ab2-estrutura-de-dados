@@ -27,7 +27,7 @@ int descompressao(FILE *compactado)
 {
 	int tamanho_arquivo = 0;
 	short tamanho_lixo, tamanho_arvore;
-    short mask_sizeArvore = 8191; // 8191 = 11111 11111111
+    short mask_sizeArvore = 8191; // 8191 = 00011111 11111111
 	char nome_saida[MAX_FILENAME_SIZE]; 
     unsigned char f_byte, s_byte;
     NO *raiz = NULL;

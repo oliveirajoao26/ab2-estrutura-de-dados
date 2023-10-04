@@ -300,8 +300,8 @@ void imprimir_bits(FILE *entrada, FILE *saida, HT *ht) //impressao da codificaca
 
 bool bit_esta_setado(unsigned char c, int i)
 {
-    unsigned char mascara = 1 << i; // 1 = 00000001 << i = 00000010; 
+    unsigned char mascara = 1 << i; // 1 = 00000001 << 7 = 10000000; 
                                     // Move o bit 1 i vezes para a esquerda.
-    return mascara & c; // 00000010 & 00000001 = 00000000; 
+    return mascara & c; // 10000000 & 00000001 = 00000000; 
                         // Verifica se o bit i está setado.
 }
