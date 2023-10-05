@@ -78,6 +78,7 @@ void compactar()
 
     // Imprime o arquivo compactado no arquivo de saida.
     imprimir_bits(arquivo, saida, ht); 
+    
 
     printf("\nProcesso Finalizado!\n\n");
 }

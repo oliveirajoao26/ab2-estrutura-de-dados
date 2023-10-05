@@ -41,8 +41,8 @@ int descompressao(FILE *compactado)
     FILE *descompactado = fopen(nome_saida, "wb"); 
     
     // Verifica o tamanho do arquivo compactado
-    fseek(compactado, 0, SEEK_END); 
-    tamanho_arquivo = ftell(compactado); 
+    fseek(compactado, 0, SEEK_END); // chegou ao EOF
+    tamanho_arquivo = ftell(compactado); // Retorna a posição de EOF
 	rewind(compactado);
 
     f_byte = fgetc(compactado); // f_byte recebe o primeiro byte do arquivo
@@ -61,10 +61,10 @@ int descompressao(FILE *compactado)
 	fseek(compactado, tamanho_arvore + 2, SEEK_SET); // Escreve depois da header no novo arquivo
 
 	escrever_arquivo(compactado, descompactado, raiz, tamanho_lixo, 
-        (tamanho_arquivo - (tamanho_arvore + 2))); // Escreve tudo no arquivo
+        tamanho_arquivo); // Escreve tudo no arquivo
 
 	fclose(compactado);
-	fclose(descompactado);
+    fclose(descompactado);
 
     printf("\nArquivo descompactado com sucesso!\n\n");
 	return 0;
@@ -98,26 +98,30 @@ NO *montagem_arvore(FILE *compactado)
 
 
 void escrever_arquivo(FILE* compactado, FILE* descompactado, NO *raiz,
-                        short tamanho_lixo, int tamanho_arquivo_final) 
+                        short tamanho_lixo, int tamanho_arquivo_compactado) 
 {
 	unsigned char buffer;
 	NO *atual = raiz;
+    int posicao_atual_arquivo;      
 
-	for (long int i = 0; i < tamanho_arquivo_final; i++)
+	while(!feof(compactado))
 	{
-        long int k;
+        //printf("##%d##\n", tamanho_lixo);
+        posicao_atual_arquivo = ftell(compactado);
+        //printf("#%d# ,,,,,,,, #%d#\n", posicao_atual_arquivo, tamanho_arquivo_compactado);
+        int k;
 		buffer = fgetc(compactado);
-
-		if (i == tamanho_arquivo_final - 1) // Ultimo byte
+		if (posicao_atual_arquivo == tamanho_arquivo_compactado - 1) // Ultimo byte
         {
 			k = 8 - tamanho_lixo; 
+            //printf("$$%d$$\n", k);
         }
 		else
         {
 			k = 8; // 1 byte
         }
 
-		for (long int j = 0; j < k; j++)
+		for (int j = 0; j < k; j++)
 		{
             // 1 = direita e 0 = esquerda   
 			if (bit_esta_setado(buffer, 7 - j)) 
