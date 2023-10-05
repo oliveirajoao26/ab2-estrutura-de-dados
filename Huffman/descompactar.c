@@ -61,7 +61,7 @@ int descompressao(FILE *compactado)
 	fseek(compactado, tamanho_arvore + 2, SEEK_SET); // Escreve depois da header no novo arquivo
 
 	escrever_arquivo(compactado, descompactado, raiz, tamanho_lixo, 
-        (tamanho_arquivo - tamanho_arvore - 2)); // Escreve tudo no arquivo
+        (tamanho_arquivo - (tamanho_arvore + 2))); // Escreve tudo no arquivo
 
 	fclose(compactado);
 	fclose(descompactado);
@@ -132,7 +132,7 @@ void escrever_arquivo(FILE* compactado, FILE* descompactado, NO *raiz,
 			if (atual->esq == NULL && atual->dir == NULL) //folha
             {
                 // Escreve o caractere no arquivo
-                fprintf(descompactado, "%c", (int)(unsigned char*)atual->item);
+                fwrite(&atual->item, sizeof(char), 1, descompactado);
                 atual = raiz;
             }
 		}

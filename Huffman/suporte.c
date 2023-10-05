@@ -112,7 +112,7 @@ void calcula_tamanho_arvore(NO *raiz_arvore, unsigned short *tamanho)
     if(raiz_arvore != NULL) 
     {
         // se o no for uma folha, o tamanho eh incrementado em 1.
-        if(((int)(char*)(raiz_arvore->item) == '\\' || (int)(char*)(raiz_arvore->item) == '*') 
+        if(((int)(unsigned char*)(raiz_arvore->item) == '\\' || (int)(unsigned char*)(raiz_arvore->item) == '*') 
             && raiz_arvore->dir == NULL && raiz_arvore->esq == NULL) 
         { //folha
             *tamanho += 1;
@@ -136,7 +136,7 @@ void imprimir_pre_ordem(FILE *arquivo, NO *raiz_arvore)
         { // folha e caracter especial = '\*' ou '\\'.  \* = asterisco e \\ = barra invertida. 
             fputc('\\', arquivo); // imprime o caracter de escape.
         }
-        fputc((int)(char*)(raiz_arvore->item), arquivo); // imprime o caracter. 
+        fputc((int)(unsigned char*)(raiz_arvore->item), arquivo); // imprime o caracter. 
 
         // chama a funcao recursivamente para a esquerda e para a direita
         // até que todos os nos sejam percorridos.
