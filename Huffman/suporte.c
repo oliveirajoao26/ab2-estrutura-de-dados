@@ -112,7 +112,7 @@ void calcula_tamanho_arvore(NO *raiz_arvore, unsigned short *tamanho)
     if(raiz_arvore != NULL) 
     {
         // se o no for uma folha, o tamanho eh incrementado em 1.
-        if(((int)(unsigned char*)(raiz_arvore->item) == '\\' || (int)(unsigned char*)(raiz_arvore->item) == '*') 
+        if(((intptr_t)(unsigned char*)(raiz_arvore->item) == '\\' || (intptr_t)(unsigned char*)(raiz_arvore->item) == '*') 
             && raiz_arvore->dir == NULL && raiz_arvore->esq == NULL) 
         { //folha
             *tamanho += 1;
@@ -131,7 +131,7 @@ void imprimir_pre_ordem(FILE *arquivo, NO *raiz_arvore)
     if(raiz_arvore != NULL)
     {
         // Se o no for uma folha e o caracter for especial, imprime o caracter de escape antes do caracter.
-        if(((int)(unsigned char*)(raiz_arvore->item) == '\\' || (int)(unsigned char*)(raiz_arvore->item) == '*') 
+        if(((intprt_t)(unsigned char*)(raiz_arvore->item) == '\\' || (intptr_t)(unsigned char*)(raiz_arvore->item) == '*') 
             && raiz_arvore->dir == NULL && raiz_arvore->esq == NULL)
         { // folha e caracter especial = '\*' ou '\\'.  \* = asterisco e \\ = barra invertida. 
             fputc('\\', arquivo); // imprime o caracter de escape.
