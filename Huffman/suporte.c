@@ -270,7 +270,7 @@ void imprimir_bits(FILE *entrada, FILE *saida, HT *ht) //impressao da codificaca
     Quando o byte temporario estiver completo, ele eh impresso no arquivo de saida.
     O byte temporario é necessário pois os caminhos podem ter tamanhos diferentes.
     */
-    while (!feof(entrada))
+    while (fread(&buffer, sizeof(unsigned char), 1, entrada) > 0)
     {
         buffer = fgetc(entrada);
         for (int i = 0; i < strlen(ht->tabela[buffer]->caminho); i++)
