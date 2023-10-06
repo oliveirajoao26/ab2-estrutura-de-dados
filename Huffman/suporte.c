@@ -131,12 +131,12 @@ void imprimir_pre_ordem(FILE *arquivo, NO *raiz_arvore)
     if(raiz_arvore != NULL)
     {
         // Se o no for uma folha e o caracter for especial, imprime o caracter de escape antes do caracter.
-        if(((intprt_t)(unsigned char*)(raiz_arvore->item) == '\\' || (intptr_t)(unsigned char*)(raiz_arvore->item) == '*') 
+        if(((intptr_t)(unsigned char*)(raiz_arvore->item) == '\\' || (intptr_t)(unsigned char*)(raiz_arvore->item) == '*') 
             && raiz_arvore->dir == NULL && raiz_arvore->esq == NULL)
         { // folha e caracter especial = '\*' ou '\\'.  \* = asterisco e \\ = barra invertida. 
             fputc('\\', arquivo); // imprime o caracter de escape.
         }
-        fputc((int)(unsigned char*)(raiz_arvore->item), arquivo); // imprime o caracter. 
+        fputc((intptr_t)(unsigned char*)(raiz_arvore->item), arquivo); // imprime o caracter. 
 
         // chama a funcao recursivamente para a esquerda e para a direita
         // até que todos os nos sejam percorridos.
@@ -181,7 +181,7 @@ void adicionar_frequencia(FILE *arquivo, HT *ht)
 void adicionar_string(HT *ht, void *item, char *caminho)
 {
     // h recebe o valor do caracter.
-    int h = (int)(unsigned char*)item; 
+    int h = (intptr_t)(unsigned char*)item; 
     strcpy(ht->tabela[h]->caminho, caminho); // copia o caminho para a tabela hash.
 }
 
@@ -272,7 +272,6 @@ void imprimir_bits(FILE *entrada, FILE *saida, HT *ht) //impressao da codificaca
     */
     while (fread(&buffer, sizeof(unsigned char), 1, entrada) > 0)
     {
-        buffer = fgetc(entrada);
         for (int i = 0; i < strlen(ht->tabela[buffer]->caminho); i++)
         {
             if (ht->tabela[buffer]->caminho[i] == '1')

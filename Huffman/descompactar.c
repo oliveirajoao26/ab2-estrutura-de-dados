@@ -104,14 +104,15 @@ void escrever_arquivo(FILE* compactado, FILE* descompactado, NO *raiz,
 	NO *atual = raiz;
     int posicao_atual_arquivo;      
 
-	while(fread(&buffer, sizeof(unsigned char), 1, compactado) > 0)
-	{
-        posicao_atual_arquivo = ftell(compactado);
+	posicao_atual_arquivo = ftell(compactado);
+    fread(&buffer, sizeof(unsigned char), 1, compactado);
+    do{  
+        //printf("#%d# ,,,,,,,, #%d#\n", posicao_atual_arquivo, tamanho_arquivo_compactado);
         int k;
-		buffer = fgetc(compactado);
 		if (posicao_atual_arquivo == tamanho_arquivo_compactado - 1) // Ultimo byte
         {
 			k = 8 - tamanho_lixo; 
+            //printf("$$%d$$\n", k);
         }
 		else
         {
@@ -137,5 +138,7 @@ void escrever_arquivo(FILE* compactado, FILE* descompactado, NO *raiz,
                 atual = raiz;
             }
 		}
-	}
+        posicao_atual_arquivo = ftell(compactado);
+    }
+	while(fread(&buffer, sizeof(unsigned char), 1, compactado) > 0);
 }
