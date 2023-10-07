@@ -46,7 +46,7 @@ int descompressao(FILE *compactado)
 	rewind(compactado);
 
     f_byte = fgetc(compactado); // f_byte recebe o primeiro byte do arquivo
-    s_byte = fgetc(compactado); // s_byte recebe o segundo byte do arquivo
+    s_byte = fgetc(compactado); // s_byte recebe o segundo byte do arquivo 
 
     printf("\nProcesso em andamento...\n\n");
 	

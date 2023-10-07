@@ -5,7 +5,7 @@
     #include <stdlib.h>
     #include <stdbool.h>
     #define MAX 256
-    #define ALTURA_MAX 8
+    #define ALTURA_MAX 10
 
 
     /**
@@ -43,7 +43,7 @@
      * 
      */
     typedef struct ELEMENTO {
-        char caminho[ALTURA_MAX]; //ALTURA_MAX = 31 = altura máxima
+        char caminho[ALTURA_MAX]; //ALTURA_MAX = 8
         long long int frequencia;
     } ELEMENTO;
 
