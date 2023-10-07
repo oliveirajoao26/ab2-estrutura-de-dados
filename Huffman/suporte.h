@@ -5,7 +5,7 @@
     #include <stdlib.h>
     #include <stdbool.h>
     #define MAX 256
-    #define ALTURA_MAX 31
+    #define ALTURA_MAX 8
 
 
     /**
